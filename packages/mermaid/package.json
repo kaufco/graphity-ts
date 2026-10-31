@@ -1,0 +1,47 @@
+{
+  "name": "@kobayami/graphity-mermaid",
+  "version": "3.0.0",
+  "description": "Export of Graphity graphs to Mermaid flowcharts, with labels, shapes, classes and subgraphs taken from caller-owned data by node ID and edge index",
+  "keywords": [
+    "graph",
+    "mermaid",
+    "flowchart",
+    "markdown",
+    "visualization"
+  ],
+  "homepage": "https://github.com/kaufco/graphity-ts#readme",
+  "bugs": {
+    "url": "https://github.com/kaufco/graphity-ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaufco/graphity-ts.git",
+    "directory": "packages/mermaid"
+  },
+  "license": "Apache-2.0",
+  "author": "Marco Kaufmann (https://github.com/kaufco)",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "NOTICE"
+  ],
+  "scripts": {
+    "prepack": "node -e \"for (const f of ['LICENSE', 'NOTICE']) require('fs').copyFileSync('../../' + f, f)\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@kobayami/graphity-core": "^3.0.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "types": ["node"],
+    // The tests use the test utilities of the core (TestGraphs, RandomGraphs), which import the
+    // core's sources; so the core resolves to its sources here too, as in vitest.config.ts.
+    "paths": {
+      "@kobayami/graphity-core": ["../core/src/index.ts"]
+    }
+  },
+  "include": ["src", "test"]
+}

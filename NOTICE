@@ -1,0 +1,27 @@
+Graphity for TypeScript
+Copyright 2025-2026 Marco Kaufmann
+
+This product includes software developed by Marco Kaufmann
+(https://github.com/kaufco/graphity-ts), the TypeScript implementation of
+Graphity (https://github.com/kaufco/graphity).
+
+Forks and derivative works are welcome under the Apache License, Version 2.0.
+The name "Graphity" refers to the original project; please choose a different
+name for any redistributed version.
+
+The packages have no third-party runtime dependencies.
+
+-------------------------------------------------------------------------------
+Third-party software from which parts of @kobayami/graphity-controlflow are
+derived:
+
+  * fastutil - Copyright (C) 2002-2024 Sebastiano Vigna
+    Apache License, Version 2.0
+    https://fastutil.di.unimi.it/
+
+    The internal hash set of @kobayami/graphity-controlflow ports the
+    open-addressing layout, hash mixing and growth policy of fastutil's
+    IntOpenHashSet.
+
+fastutil ships no upstream NOTICE file with required attribution content; the
+entry above is provided for transparency.

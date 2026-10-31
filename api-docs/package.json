@@ -1,0 +1,15 @@
+{
+  "name": "graphity-ts-api-docs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The API documentation of Graphity for TypeScript: TypeDoc over the five published packages, on TypeScript 6, whose compiler API TypeDoc needs",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "typedoc"
+  },
+  "devDependencies": {
+    "typedoc": "0.28.20",
+    "typescript": "6.0.3"
+  }
+}

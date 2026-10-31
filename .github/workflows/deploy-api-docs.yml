@@ -1,0 +1,116 @@
+# Builds one API documentation site for the five published packages with TypeDoc
+# (api-docs/typedoc.config.mjs) and deploys it to GitHub Pages, so links and the README badge keep
+# a single target however many packages there are.
+#
+# The job is guarded with `if: github.repository == 'kaufco/graphity-ts'` so that
+# forks don't attempt a Pages deploy they have neither the settings nor the
+# permissions for.
+#
+# Two triggers:
+#   * release.published — automatic run. The npm upload (release.yml) runs by
+#     hand before the release, starting with a dry run; this workflow follows
+#     the release. Only `published`, not `released`/`edited`: a later correction
+#     of the release notes must not redeploy. Deliberately not on push.tags as
+#     well — a release created from a new tag would fire both triggers.
+#   * workflow_dispatch — manual run, to populate
+#     https://kaufco.github.io/graphity-ts/ from main HEAD before the first
+#     release so the page is not blank, and as the fallback when a release
+#     already exists. The source links point at the tag named like the version
+#     in package.json, so before that release they lead nowhere.
+#
+# Under each class, function and method that a page of the guide uses, the deployed documentation links
+# those pages. The guide (kaufco/graphity-doc) publishes the list as api-pages.json, and
+# .github/scripts/add-guide-links.mjs adds the links to the generated pages: only the
+# deployed site depends on the guide, not the sources. The links are those of the guide
+# at the time of the run; if the list cannot be read, the documentation goes out without
+# them.
+#
+# The published documentation is the release's snapshot at Pages root; a
+# versioned layout (/api/<version>/, /api/latest/) can be introduced later
+# without changing the trigger model.
+#
+# Two repository settings are prerequisites:
+#   * GitHub Pages source must be "GitHub Actions" — this workflow uses
+#     actions/deploy-pages, not a gh-pages branch.
+#   * The `github-pages` environment must allow tag deployments. By default it
+#     permits the default branch only, and a release run stands in the tag's
+#     ref, so it is rejected with "Tag X.Y.Z is not allowed to deploy to
+#     github-pages due to environment protection rules". Add a tag rule under
+#     Deployment branches and tags; until then, dispatch manually from main.
+
+name: Deploy API documentation
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Pages allows only one concurrent deployment. Don't cancel an in-flight
+# deploy — let it finish so we never leave Pages in a half-updated state.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build & deploy the API documentation
+    if: github.repository == 'kaufco/graphity-ts'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # On a release event this is the tag; a manual run takes the branch
+          # it was started from.
+          ref: ${{ github.event.release.tag_name || github.ref }}
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        # TypeDoc reads the packages that a package imports from their declarations in dist.
+        run: npm run build
+
+      - name: Build the API documentation
+        # TypeDoc over the five packages listed in api-docs/typedoc.config.mjs. Every validation
+        # of TypeDoc is on there and every warning is an error, so a broken documentation build
+        # fails this job.
+        run: npm run docs
+
+      - name: Link the classes, functions and methods to the guide
+        run: |
+          set -euo pipefail
+          list=https://kaufco.github.io/graphity-doc/api-pages.json
+          if curl -fsSL --retry 3 --max-time 30 -o "$RUNNER_TEMP/api-pages.json" "$list"; then
+            node .github/scripts/add-guide-links.mjs api-docs/dist "$RUNNER_TEMP/api-pages.json"
+          else
+            echo "::warning::$list could not be read; the API documentation has no links to the guide."
+          fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the API documentation artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: api-docs/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

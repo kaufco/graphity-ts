@@ -1,0 +1,16 @@
+{
+  // A consumer of the five packages with the compiler's defaults where it matters: the published
+  // declarations in dist are checked (skipLibCheck: false), as a project without skipLibCheck sees
+  // them. Run by `npm run typecheck` after the build.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "skipLibCheck": false,
+    "noEmit": true,
+    "types": []
+  },
+  "files": ["consumer.ts"]
+}

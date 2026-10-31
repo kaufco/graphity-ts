@@ -1,0 +1,1357 @@
+{
+  "about": "The TypeScript counterparts of the Java API references of the guide Solving Graph Problems with Graphity (https://github.com/kaufco/graphity-doc), which links every name of the Java API to the API documentation of the language a reader picks. One entry per public or protected type, constructor and method of the four published Java modules, keyed by its declaration as java-refs.txt lists them: 'name' is the name in TypeScript, 'url' its page and anchor relative to the root of the API documentation (docRoot when built here, https://kaufco.github.io/graphity-ts/ when published), and 'note' what a reader of the Java text would not expect. Where TypeScript keeps Java's overloads as overload signatures of one name, 'signature' is the overload's signature as the API documentation shows it, without the return type and with type parameters by name only, so that the guide can tell the overloads apart where its Java text does; Java overloads that become one signature in TypeScript keep the plain name. Where TypeScript has no counterpart, 'name' and 'url' are null and 'reason' says why. test/apiMapping.test.ts checks the entries, and every url against the API documentation when it is built.",
+  "docRoot": "api-docs/dist",
+  "docCommand": "npm run build && npm run docs",
+  "refs": {
+    "Ancestry": {
+      "name": "Ancestry",
+      "url": "classes/_kobayami_graphity-core.Ancestry.html"
+    },
+    "Ancestry.of(Graph)": {
+      "name": "Ancestry.of",
+      "signature": "Ancestry.of(forest: Graph)",
+      "url": "classes/_kobayami_graphity-core.Ancestry.html#of"
+    },
+    "Ancestry.of(Dominators)": {
+      "name": "Ancestry.of",
+      "signature": "Ancestry.of(dominators: Dominators)",
+      "url": "classes/_kobayami_graphity-core.Ancestry.html#of"
+    },
+    "Ancestry.lowestCommonAncestorOf(int, int)": {
+      "name": "Ancestry.lowestCommonAncestorOf",
+      "url": "classes/_kobayami_graphity-core.Ancestry.html#lowestcommonancestorof"
+    },
+    "Ancestry.isAncestorOf(int, int)": {
+      "name": "Ancestry.isAncestorOf",
+      "url": "classes/_kobayami_graphity-core.Ancestry.html#isancestorof"
+    },
+    "Ancestry.depthOf(int)": {
+      "name": "Ancestry.depthOf",
+      "url": "classes/_kobayami_graphity-core.Ancestry.html#depthof"
+    },
+    "Ancestry.parentOf(int)": {
+      "name": "Ancestry.parentOf",
+      "url": "classes/_kobayami_graphity-core.Ancestry.html#parentof"
+    },
+    "BackEdges": {
+      "name": "BackEdges",
+      "url": "variables/_kobayami_graphity-core.BackEdges.html",
+      "note": "A constant object, not a class: its functions take the place of Java's static methods."
+    },
+    "BackEdges.of(Graph)": {
+      "name": "BackEdges.of",
+      "url": "variables/_kobayami_graphity-core.BackEdges.html#of"
+    },
+    "BfsDistances": {
+      "name": "BfsDistances",
+      "url": "classes/_kobayami_graphity-core.BfsDistances.html"
+    },
+    "BfsDistances.of(Graph, int)": {
+      "name": "BfsDistances.of",
+      "signature": "BfsDistances.of(graph: Graph, source: number)",
+      "url": "classes/_kobayami_graphity-core.BfsDistances.html#of"
+    },
+    "BfsDistances.of(Graph, IntList)": {
+      "name": "BfsDistances.of",
+      "signature": "BfsDistances.of(graph: Graph, sources: IntList)",
+      "url": "classes/_kobayami_graphity-core.BfsDistances.html#of"
+    },
+    "BfsDistances.distanceOf(int)": {
+      "name": "BfsDistances.distanceOf",
+      "url": "classes/_kobayami_graphity-core.BfsDistances.html#distanceof"
+    },
+    "BfsDistances.isReachable(int)": {
+      "name": "BfsDistances.isReachable",
+      "url": "classes/_kobayami_graphity-core.BfsDistances.html#isreachable"
+    },
+    "BfsDistances.pathTo(int)": {
+      "name": "BfsDistances.pathTo",
+      "url": "classes/_kobayami_graphity-core.BfsDistances.html#pathto",
+      "note": "Returns an Int32Array, not to be modified, where Java returns an IntList: length and [i] in place of size() and getInt(i)."
+    },
+    "BfsDistances.maxDistance()": {
+      "name": "BfsDistances.maxDistance",
+      "url": "classes/_kobayami_graphity-core.BfsDistances.html#maxdistance",
+      "note": "A property, read without parentheses: distances.maxDistance."
+    },
+    "BiAdjacentGraph": {
+      "name": "BiAdjacentGraph",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html"
+    },
+    "BiAdjacentGraph.of(Graph)": {
+      "name": "BiAdjacentGraph.of",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#of"
+    },
+    "BiAdjacentGraph.inDegree(int)": {
+      "name": "BiAdjacentGraph.inDegree",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#indegree"
+    },
+    "BiAdjacentGraph.inNodes(int)": {
+      "name": "BiAdjacentGraph.inNodes",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#innodes"
+    },
+    "BiAdjacentGraph.hasInNode(int, int)": {
+      "name": "BiAdjacentGraph.hasInNode",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#hasinnode"
+    },
+    "BiAdjacentGraph.uniAdjacentGraph()": {
+      "name": "BiAdjacentGraph.uniAdjacentGraph",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#uniadjacentgraph"
+    },
+    "BiAdjacentGraph.transposed()": {
+      "name": "BiAdjacentGraph.transposed",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#transposed"
+    },
+    "BiAdjacentGraph.transposedEdgeIndex(int)": {
+      "name": "BiAdjacentGraph.transposedEdgeIndex",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#transposededgeindex"
+    },
+    "BiAdjacentGraph.degree(int)": {
+      "name": "BiAdjacentGraph.degree",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#degree"
+    },
+    "BiAdjacentGraph.neighbors(int)": {
+      "name": "BiAdjacentGraph.neighbors",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#neighbors"
+    },
+    "BiAdjacentGraph.hasNeighbor(int, int)": {
+      "name": "BiAdjacentGraph.hasNeighbor",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#hasneighbor"
+    },
+    "BiAdjacentGraph.isRootNode(int)": {
+      "name": "BiAdjacentGraph.isRootNode",
+      "url": "classes/_kobayami_graphity-core.BiAdjacentGraph.html#isrootnode"
+    },
+    "Biconnectivity": {
+      "name": "Biconnectivity",
+      "url": "classes/_kobayami_graphity-core.Biconnectivity.html"
+    },
+    "Biconnectivity.bridges()": {
+      "name": "Biconnectivity.bridges",
+      "url": "classes/_kobayami_graphity-core.Biconnectivity.html#bridges",
+      "note": "A property, read without parentheses: biconnectivity.bridges."
+    },
+    "Biconnectivity.articulationPoints()": {
+      "name": "Biconnectivity.articulationPoints",
+      "url": "classes/_kobayami_graphity-core.Biconnectivity.html#articulationpoints",
+      "note": "A property, read without parentheses: biconnectivity.articulationPoints."
+    },
+    "Biconnectivity.blocks()": {
+      "name": "Biconnectivity.blocks",
+      "url": "classes/_kobayami_graphity-core.Biconnectivity.html#blocks",
+      "note": "A property, read without parentheses: biconnectivity.blocks."
+    },
+    "Components": {
+      "name": "Components",
+      "url": "variables/_kobayami_graphity-core.Components.html",
+      "note": "A constant object, not a class: its functions take the place of Java's static methods."
+    },
+    "Components.sccsOf(Graph)": {
+      "name": "Components.sccsOf",
+      "url": "variables/_kobayami_graphity-core.Components.html#sccsof"
+    },
+    "Components.wccsOf(Graph)": {
+      "name": "Components.wccsOf",
+      "url": "variables/_kobayami_graphity-core.Components.html#wccsof"
+    },
+    "Components.ccsOf(Graph)": {
+      "name": "Components.ccsOf",
+      "url": "variables/_kobayami_graphity-core.Components.html#ccsof"
+    },
+    "Components.biconnectivityOf(BiAdjacentGraph)": {
+      "name": "Components.biconnectivityOf",
+      "url": "variables/_kobayami_graphity-core.Components.html#biconnectivityof"
+    },
+    "Components.strongConnectivityOf(BiAdjacentGraph)": {
+      "name": "Components.strongConnectivityOf",
+      "url": "variables/_kobayami_graphity-core.Components.html#strongconnectivityof"
+    },
+    "Csr": {
+      "name": "Csr",
+      "url": "variables/_kobayami_graphity-core.Csr.html",
+      "note": "A constant object, not a class: its functions take the place of Java's static methods."
+    },
+    "Csr.outAdjacencyStart(Graph)": {
+      "name": "Csr.outAdjacencyStart",
+      "url": "variables/_kobayami_graphity-core.Csr.html#outadjacencystart"
+    },
+    "Csr.outAdjacency(Graph)": {
+      "name": "Csr.outAdjacency",
+      "url": "variables/_kobayami_graphity-core.Csr.html#outadjacency"
+    },
+    "Csr.inAdjacencyStart(BiAdjacentGraph)": {
+      "name": "Csr.inAdjacencyStart",
+      "url": "variables/_kobayami_graphity-core.Csr.html#inadjacencystart"
+    },
+    "Csr.inAdjacency(BiAdjacentGraph)": {
+      "name": "Csr.inAdjacency",
+      "url": "variables/_kobayami_graphity-core.Csr.html#inadjacency"
+    },
+    "DfsEdgeTraverser": {
+      "name": "DfsEdgeTraverser",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html"
+    },
+    "DfsEdgeTraverser(Graph)": {
+      "name": "new DfsEdgeTraverser",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#constructor"
+    },
+    "DfsEdgeTraverser.enterNode(int)": {
+      "name": "DfsEdgeTraverser.enterNode",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#enternode"
+    },
+    "DfsEdgeTraverser.leaveNode(int)": {
+      "name": "DfsEdgeTraverser.leaveNode",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#leavenode"
+    },
+    "DfsEdgeTraverser.visitEdge(int, int, int, TargetState)": {
+      "name": "DfsEdgeTraverser.visitEdge",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#visitedge"
+    },
+    "DfsEdgeTraverser.isVisited(int)": {
+      "name": "DfsEdgeTraverser.isVisited",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#isvisited"
+    },
+    "DfsEdgeTraverser.isOnStack(int)": {
+      "name": "DfsEdgeTraverser.isOnStack",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#isonstack"
+    },
+    "DfsEdgeTraverser.stop()": {
+      "name": "DfsEdgeTraverser.stop",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#stop"
+    },
+    "DfsEdgeTraverser.run()": {
+      "name": "DfsEdgeTraverser.run",
+      "signature": "DfsEdgeTraverser.run()",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#run"
+    },
+    "DfsEdgeTraverser.run(int)": {
+      "name": "DfsEdgeTraverser.run",
+      "signature": "DfsEdgeTraverser.run(startNode: number)",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#run"
+    },
+    "DfsEdgeTraverser.run(IntList)": {
+      "name": "DfsEdgeTraverser.run",
+      "signature": "DfsEdgeTraverser.run(startNodes: IntList)",
+      "url": "classes/_kobayami_graphity-core.DfsEdgeTraverser.html#run"
+    },
+    "DfsEdgeTraverser.TargetState": {
+      "name": "TargetState",
+      "url": "variables/_kobayami_graphity-core.TargetState.html",
+      "note": "Exported at the top level of @kobayami/graphity-core, not nested in DfsEdgeTraverser. A constant object of numbers, Java's ordinals (TargetState.UNVISITED is 0), with a type of the same name for one of them, not an enum."
+    },
+    "DfsEdgeTraverser.EdgeAction": {
+      "name": "EdgeAction",
+      "url": "variables/_kobayami_graphity-core.EdgeAction.html",
+      "note": "Exported at the top level of @kobayami/graphity-core, not nested in DfsEdgeTraverser. A constant object of numbers, Java's ordinals (EdgeAction.DESCEND is 0), with a type of the same name for one of them, not an enum."
+    },
+    "DfsTraverser": {
+      "name": "DfsTraverser",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html"
+    },
+    "DfsTraverser(Graph)": {
+      "name": "new DfsTraverser",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#constructor"
+    },
+    "DfsTraverser.enterNode(int)": {
+      "name": "DfsTraverser.enterNode",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#enternode"
+    },
+    "DfsTraverser.leaveNode(int)": {
+      "name": "DfsTraverser.leaveNode",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#leavenode"
+    },
+    "DfsTraverser.isVisited(int)": {
+      "name": "DfsTraverser.isVisited",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#isvisited"
+    },
+    "DfsTraverser.isOnStack(int)": {
+      "name": "DfsTraverser.isOnStack",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#isonstack"
+    },
+    "DfsTraverser.stop()": {
+      "name": "DfsTraverser.stop",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#stop"
+    },
+    "DfsTraverser.run()": {
+      "name": "DfsTraverser.run",
+      "signature": "DfsTraverser.run()",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#run"
+    },
+    "DfsTraverser.run(int)": {
+      "name": "DfsTraverser.run",
+      "signature": "DfsTraverser.run(startNode: number)",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#run"
+    },
+    "DfsTraverser.run(IntList)": {
+      "name": "DfsTraverser.run",
+      "signature": "DfsTraverser.run(startNodes: IntList)",
+      "url": "classes/_kobayami_graphity-core.DfsTraverser.html#run"
+    },
+    "Dominators": {
+      "name": "Dominators",
+      "url": "classes/_kobayami_graphity-core.Dominators.html"
+    },
+    "Dominators.of(BiAdjacentGraph, int)": {
+      "name": "Dominators.of",
+      "signature": "Dominators.of(graph: BiAdjacentGraph, entry: number)",
+      "url": "classes/_kobayami_graphity-core.Dominators.html#of"
+    },
+    "Dominators.of(BiAdjacentGraph, IntList)": {
+      "name": "Dominators.of",
+      "signature": "Dominators.of(graph: BiAdjacentGraph, entries: IntList)",
+      "url": "classes/_kobayami_graphity-core.Dominators.html#of"
+    },
+    "Dominators.graph()": {
+      "name": "Dominators.graph",
+      "url": "classes/_kobayami_graphity-core.Dominators.html#graph",
+      "note": "A property, read without parentheses: dominators.graph."
+    },
+    "Dominators.immediateDominatorOf(int)": {
+      "name": "Dominators.immediateDominatorOf",
+      "url": "classes/_kobayami_graphity-core.Dominators.html#immediatedominatorof"
+    },
+    "Dominators.isReachable(int)": {
+      "name": "Dominators.isReachable",
+      "url": "classes/_kobayami_graphity-core.Dominators.html#isreachable"
+    },
+    "EdgeConsumer": {
+      "name": "EdgeConsumer",
+      "url": "types/_kobayami_graphity-core.EdgeConsumer.html",
+      "note": "A function type, (source, target, edgeIndex) => void, not an interface."
+    },
+    "EdgeConsumer.accept(int, int, int)": {
+      "name": "EdgeConsumer",
+      "url": "types/_kobayami_graphity-core.EdgeConsumer.html",
+      "note": "The function type itself: a call of the function takes the place of accept."
+    },
+    "EdgeMapping": {
+      "name": "EdgeMapping",
+      "url": "classes/_kobayami_graphity-core.EdgeMapping.html"
+    },
+    "EdgeMapping.inverted(int)": {
+      "name": "EdgeMapping.inverted",
+      "url": "classes/_kobayami_graphity-core.EdgeMapping.html#inverted"
+    },
+    "EdgeMapping.compose(EdgeMapping)": {
+      "name": "EdgeMapping.compose",
+      "url": "classes/_kobayami_graphity-core.EdgeMapping.html#compose"
+    },
+    "EdgeMapping.gather(int[])": {
+      "name": "EdgeMapping.gather",
+      "signature": "EdgeMapping.gather<A>(values: A)",
+      "url": "classes/_kobayami_graphity-core.EdgeMapping.html#gather",
+      "note": "One method for every typed array, which returns an array of the same type: an Int32Array here."
+    },
+    "EdgeMapping.gather(long[])": {
+      "name": "EdgeMapping.gather",
+      "signature": "EdgeMapping.gather<A>(values: A)",
+      "url": "classes/_kobayami_graphity-core.EdgeMapping.html#gather",
+      "note": "One method for every typed array, which returns an array of the same type: a BigInt64Array here."
+    },
+    "EdgeMapping.gather(double[])": {
+      "name": "EdgeMapping.gather",
+      "signature": "EdgeMapping.gather<A>(values: A)",
+      "url": "classes/_kobayami_graphity-core.EdgeMapping.html#gather",
+      "note": "One method for every typed array, which returns an array of the same type: a Float64Array here."
+    },
+    "EdgeMapping.gather(T[], T[])": {
+      "name": "EdgeMapping.gather",
+      "signature": "EdgeMapping.gather<T>(values: ArrayLike<T>, newValues: T[])",
+      "url": "classes/_kobayami_graphity-core.EdgeMapping.html#gather"
+    },
+    "EdgePartition": {
+      "name": "EdgePartition",
+      "url": "classes/_kobayami_graphity-core.EdgePartition.html"
+    },
+    "EdgePartition.edgeCount()": {
+      "name": "EdgePartition.edgeCount",
+      "url": "classes/_kobayami_graphity-core.EdgePartition.html#edgecount",
+      "note": "A property, read without parentheses: partition.edgeCount."
+    },
+    "EdgePartition.edgesOf(int)": {
+      "name": "EdgePartition.edgesOf",
+      "url": "classes/_kobayami_graphity-core.EdgePartition.html#edgesof"
+    },
+    "EdgeType": {
+      "name": "EdgeType",
+      "url": "variables/_kobayami_graphity-core.EdgeType.html",
+      "note": "A constant object of numbers, Java's ordinals (EdgeType.TREE is 0), with a type of the same name for one of them, not an enum."
+    },
+    "EdgeTypes": {
+      "name": "EdgeTypes",
+      "url": "classes/_kobayami_graphity-core.EdgeTypes.html"
+    },
+    "EdgeTypes.of(Graph)": {
+      "name": "EdgeTypes.of",
+      "url": "classes/_kobayami_graphity-core.EdgeTypes.html#of"
+    },
+    "EdgeTypes.typeOf(int)": {
+      "name": "EdgeTypes.typeOf",
+      "url": "classes/_kobayami_graphity-core.EdgeTypes.html#typeof"
+    },
+    "Edges": {
+      "name": "Edges",
+      "url": "classes/_kobayami_graphity-core.Edges.html"
+    },
+    "Edges.of(EdgeTypes, EdgeType)": {
+      "name": "Edges.of",
+      "url": "classes/_kobayami_graphity-core.Edges.html#of"
+    },
+    "Edges.sourceNodes()": {
+      "name": "Edges.sourceNodes",
+      "url": "classes/_kobayami_graphity-core.Edges.html#sourcenodes",
+      "note": "A property, read without parentheses (edges.sourceNodes), that holds an Int32Array, not to be modified, where Java returns an IntList."
+    },
+    "Edges.targetNodes()": {
+      "name": "Edges.targetNodes",
+      "url": "classes/_kobayami_graphity-core.Edges.html#targetnodes",
+      "note": "A property, read without parentheses (edges.targetNodes), that holds an Int32Array, not to be modified, where Java returns an IntList."
+    },
+    "Edges.edgeIndices()": {
+      "name": "Edges.edgeIndices",
+      "url": "classes/_kobayami_graphity-core.Edges.html#edgeindices",
+      "note": "A property, read without parentheses (edges.edgeIndices), that holds an Int32Array, not to be modified, where Java returns an IntList."
+    },
+    "Edges.count()": {
+      "name": "Edges.count",
+      "url": "classes/_kobayami_graphity-core.Edges.html#count",
+      "note": "A property, read without parentheses: edges.count."
+    },
+    "Edges.isEmpty()": {
+      "name": "Edges.isEmpty",
+      "url": "classes/_kobayami_graphity-core.Edges.html#isempty",
+      "note": "A property, read without parentheses: edges.isEmpty."
+    },
+    "FrontierTraverser": {
+      "name": "FrontierTraverser",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html"
+    },
+    "FrontierTraverser(Graph)": {
+      "name": "new FrontierTraverser",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#constructor"
+    },
+    "FrontierTraverser.visitNode(int)": {
+      "name": "FrontierTraverser.visitNode",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#visitnode"
+    },
+    "FrontierTraverser.enqueueChildren(int)": {
+      "name": "FrontierTraverser.enqueueChildren",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#enqueuechildren"
+    },
+    "FrontierTraverser.enqueue(int)": {
+      "name": "FrontierTraverser.enqueue",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#enqueue"
+    },
+    "FrontierTraverser.isVisited(int)": {
+      "name": "FrontierTraverser.isVisited",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#isvisited"
+    },
+    "FrontierTraverser.currentLevel()": {
+      "name": "FrontierTraverser.currentLevel",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#currentlevel",
+      "note": "A protected property, read without parentheses: this.currentLevel."
+    },
+    "FrontierTraverser.leaveLevel(int)": {
+      "name": "FrontierTraverser.leaveLevel",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#leavelevel"
+    },
+    "FrontierTraverser.stop()": {
+      "name": "FrontierTraverser.stop",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#stop"
+    },
+    "FrontierTraverser.run()": {
+      "name": "FrontierTraverser.run",
+      "signature": "FrontierTraverser.run()",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#run"
+    },
+    "FrontierTraverser.run(int)": {
+      "name": "FrontierTraverser.run",
+      "signature": "FrontierTraverser.run(startNode: number)",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#run"
+    },
+    "FrontierTraverser.run(IntList)": {
+      "name": "FrontierTraverser.run",
+      "signature": "FrontierTraverser.run(startNodes: IntList)",
+      "url": "classes/_kobayami_graphity-core.FrontierTraverser.html#run"
+    },
+    "Graph": {
+      "name": "Graph",
+      "url": "classes/_kobayami_graphity-core.Graph.html"
+    },
+    "Graph.of(int[], int[])": {
+      "name": "Graph.of",
+      "url": "classes/_kobayami_graphity-core.Graph.html#of"
+    },
+    "Graph.writeTo(OutputStream)": {
+      "name": "Graph.writeTo",
+      "url": "classes/_kobayami_graphity-core.Graph.html#writeto",
+      "note": "Writes to a ByteSink, any object with a method write(chunk: Uint8Array), such as a stream of Node.js, in place of an OutputStream."
+    },
+    "Graph.readFrom(InputStream)": {
+      "name": "Graph.readFrom",
+      "url": "classes/_kobayami_graphity-core.Graph.html#readfrom",
+      "note": "Reads the bytes of a graph from a Uint8Array, in place of an InputStream: JavaScript cannot read a stream synchronously."
+    },
+    "Graph.nodeCount()": {
+      "name": "Graph.nodeCount",
+      "url": "classes/_kobayami_graphity-core.Graph.html#nodecount",
+      "note": "A property, read without parentheses: graph.nodeCount."
+    },
+    "Graph.edgeCount()": {
+      "name": "Graph.edgeCount",
+      "url": "classes/_kobayami_graphity-core.Graph.html#edgecount",
+      "note": "A property, read without parentheses: graph.edgeCount."
+    },
+    "Graph.isEmpty()": {
+      "name": "Graph.isEmpty",
+      "url": "classes/_kobayami_graphity-core.Graph.html#isempty",
+      "note": "A property, read without parentheses: graph.isEmpty."
+    },
+    "Graph.outDegree(int)": {
+      "name": "Graph.outDegree",
+      "url": "classes/_kobayami_graphity-core.Graph.html#outdegree"
+    },
+    "Graph.outNodes(int)": {
+      "name": "Graph.outNodes",
+      "url": "classes/_kobayami_graphity-core.Graph.html#outnodes"
+    },
+    "Graph.outEdgeStart(int)": {
+      "name": "Graph.outEdgeStart",
+      "url": "classes/_kobayami_graphity-core.Graph.html#outedgestart"
+    },
+    "Graph.outEdgeEnd(int)": {
+      "name": "Graph.outEdgeEnd",
+      "url": "classes/_kobayami_graphity-core.Graph.html#outedgeend"
+    },
+    "Graph.nodes()": {
+      "name": "Graph.nodes",
+      "url": "classes/_kobayami_graphity-core.Graph.html#nodes",
+      "note": "Returns a generator of the node IDs, in place of an IntStream."
+    },
+    "Graph.forEachEdge(EdgeConsumer)": {
+      "name": "Graph.forEachEdge",
+      "url": "classes/_kobayami_graphity-core.Graph.html#foreachedge"
+    },
+    "Graph.edgeTarget(int)": {
+      "name": "Graph.edgeTarget",
+      "url": "classes/_kobayami_graphity-core.Graph.html#edgetarget"
+    },
+    "Graph.edgeSource(int)": {
+      "name": "Graph.edgeSource",
+      "url": "classes/_kobayami_graphity-core.Graph.html#edgesource"
+    },
+    "Graph.hasOutNode(int, int)": {
+      "name": "Graph.hasOutNode",
+      "url": "classes/_kobayami_graphity-core.Graph.html#hasoutnode"
+    },
+    "Graph.edgeIndexOf(int, int)": {
+      "name": "Graph.edgeIndexOf",
+      "url": "classes/_kobayami_graphity-core.Graph.html#edgeindexof"
+    },
+    "Graph.containsSelfLoop(int)": {
+      "name": "Graph.containsSelfLoop",
+      "url": "classes/_kobayami_graphity-core.Graph.html#containsselfloop"
+    },
+    "Graph.uniAdjacentGraph()": {
+      "name": "Graph.uniAdjacentGraph",
+      "url": "classes/_kobayami_graphity-core.Graph.html#uniadjacentgraph"
+    },
+    "Graph.equals(Object)": {
+      "name": "Graph.equals",
+      "url": "classes/_kobayami_graphity-core.Graph.html#equals",
+      "note": "Java's value equality as a method: === and the keys of a Map or a Set still compare identity."
+    },
+    "Graph.hashCode()": {
+      "name": "Graph.hashCode",
+      "url": "classes/_kobayami_graphity-core.Graph.html#hashcode",
+      "note": "Java's value, as a number; no JavaScript collection calls it."
+    },
+    "Graph.toString()": {
+      "name": "Graph.toString",
+      "url": "classes/_kobayami_graphity-core.Graph.html#tostring"
+    },
+    "GraphBuilder": {
+      "name": "GraphBuilder",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html"
+    },
+    "GraphBuilder()": {
+      "name": "new GraphBuilder",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#constructor"
+    },
+    "GraphBuilder.ensureEdgeCapacity(int)": {
+      "name": "GraphBuilder.ensureEdgeCapacity",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#ensureedgecapacity"
+    },
+    "GraphBuilder.addNode()": {
+      "name": "GraphBuilder.addNode",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addnode"
+    },
+    "GraphBuilder.addNodes(int)": {
+      "name": "GraphBuilder.addNodes",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addnodes"
+    },
+    "GraphBuilder.addChild(int)": {
+      "name": "GraphBuilder.addChild",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addchild"
+    },
+    "GraphBuilder.addChildren(int, int)": {
+      "name": "GraphBuilder.addChildren",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addchildren"
+    },
+    "GraphBuilder.addParent(int)": {
+      "name": "GraphBuilder.addParent",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addparent"
+    },
+    "GraphBuilder.addParents(int, int)": {
+      "name": "GraphBuilder.addParents",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addparents"
+    },
+    "GraphBuilder.addEdge(int, int)": {
+      "name": "GraphBuilder.addEdge",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addedge"
+    },
+    "GraphBuilder.addEdgeAndNodes(int, int)": {
+      "name": "GraphBuilder.addEdgeAndNodes",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addedgeandnodes"
+    },
+    "GraphBuilder.addOutEdges(int, IntList)": {
+      "name": "GraphBuilder.addOutEdges",
+      "signature": "GraphBuilder.addOutEdges(source: number, targets: IntList)",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addoutedges"
+    },
+    "GraphBuilder.addOutEdgesAndNodes(int, IntList)": {
+      "name": "GraphBuilder.addOutEdgesAndNodes",
+      "signature": "GraphBuilder.addOutEdgesAndNodes(source: number, targets: IntList)",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addoutedgesandnodes"
+    },
+    "GraphBuilder.addOutEdges(int, int...)": {
+      "name": "GraphBuilder.addOutEdges",
+      "signature": "GraphBuilder.addOutEdges(source: number, ...targets: number[])",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addoutedges"
+    },
+    "GraphBuilder.addOutEdgesAndNodes(int, int...)": {
+      "name": "GraphBuilder.addOutEdgesAndNodes",
+      "signature": "GraphBuilder.addOutEdgesAndNodes(source: number, ...targets: number[])",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addoutedgesandnodes"
+    },
+    "GraphBuilder.addInEdges(int, IntList)": {
+      "name": "GraphBuilder.addInEdges",
+      "signature": "GraphBuilder.addInEdges(target: number, sources: IntList)",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addinedges"
+    },
+    "GraphBuilder.addInEdgesAndNodes(int, IntList)": {
+      "name": "GraphBuilder.addInEdgesAndNodes",
+      "signature": "GraphBuilder.addInEdgesAndNodes(target: number, sources: IntList)",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addinedgesandnodes"
+    },
+    "GraphBuilder.addInEdges(int, int...)": {
+      "name": "GraphBuilder.addInEdges",
+      "signature": "GraphBuilder.addInEdges(target: number, ...sources: number[])",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addinedges"
+    },
+    "GraphBuilder.addInEdgesAndNodes(int, int...)": {
+      "name": "GraphBuilder.addInEdgesAndNodes",
+      "signature": "GraphBuilder.addInEdgesAndNodes(target: number, ...sources: number[])",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addinedgesandnodes"
+    },
+    "GraphBuilder.addPath(IntList)": {
+      "name": "GraphBuilder.addPath",
+      "signature": "GraphBuilder.addPath(nodes: IntList)",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addpath"
+    },
+    "GraphBuilder.addPathAndNodes(IntList)": {
+      "name": "GraphBuilder.addPathAndNodes",
+      "signature": "GraphBuilder.addPathAndNodes(nodes: IntList)",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addpathandnodes"
+    },
+    "GraphBuilder.addPath(int...)": {
+      "name": "GraphBuilder.addPath",
+      "signature": "GraphBuilder.addPath(...nodes: number[])",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addpath"
+    },
+    "GraphBuilder.addPathAndNodes(int...)": {
+      "name": "GraphBuilder.addPathAndNodes",
+      "signature": "GraphBuilder.addPathAndNodes(...nodes: number[])",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addpathandnodes"
+    },
+    "GraphBuilder.addEdgePairs(int...)": {
+      "name": "GraphBuilder.addEdgePairs",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addedgepairs"
+    },
+    "GraphBuilder.addEdgePairsAndNodes(int...)": {
+      "name": "GraphBuilder.addEdgePairsAndNodes",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addedgepairsandnodes"
+    },
+    "GraphBuilder.addEdges(Edges)": {
+      "name": "GraphBuilder.addEdges",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addedges"
+    },
+    "GraphBuilder.addEdgesAndNodes(Edges)": {
+      "name": "GraphBuilder.addEdgesAndNodes",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addedgesandnodes"
+    },
+    "GraphBuilder.addGraph(Graph)": {
+      "name": "GraphBuilder.addGraph",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#addgraph"
+    },
+    "GraphBuilder.build()": {
+      "name": "GraphBuilder.build",
+      "url": "classes/_kobayami_graphity-core.GraphBuilder.html#build"
+    },
+    "GraphDiff": {
+      "name": "GraphDiff",
+      "url": "classes/_kobayami_graphity-core.GraphDiff.html"
+    },
+    "GraphDiff.addedEdges()": {
+      "name": "GraphDiff.addedEdges",
+      "url": "classes/_kobayami_graphity-core.GraphDiff.html#addededges",
+      "note": "A property, read without parentheses: diff.addedEdges."
+    },
+    "GraphDiff.removedEdges()": {
+      "name": "GraphDiff.removedEdges",
+      "url": "classes/_kobayami_graphity-core.GraphDiff.html#removededges",
+      "note": "A property, read without parentheses: diff.removedEdges."
+    },
+    "GraphDiff.isEmpty()": {
+      "name": "GraphDiff.isEmpty",
+      "url": "classes/_kobayami_graphity-core.GraphDiff.html#isempty",
+      "note": "A property, read without parentheses: diff.isEmpty."
+    },
+    "GraphDiff.toString()": {
+      "name": "GraphDiff.toString",
+      "url": "classes/_kobayami_graphity-core.GraphDiff.html#tostring"
+    },
+    "Graphs": {
+      "name": "Graphs",
+      "url": "variables/_kobayami_graphity-core.Graphs.html",
+      "note": "A constant object, not a class: its functions take the place of Java's static methods."
+    },
+    "Graphs.remapped(Graph, NodeMapping)": {
+      "name": "Graphs.remapped",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#remapped"
+    },
+    "Graphs.dominatorTree(Dominators)": {
+      "name": "Graphs.dominatorTree",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#dominatortree"
+    },
+    "Graphs.transitiveClosure(Graph)": {
+      "name": "Graphs.transitiveClosure",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#transitiveclosure"
+    },
+    "Graphs.transitiveReduction(Graph)": {
+      "name": "Graphs.transitiveReduction",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#transitivereduction"
+    },
+    "Graphs.edgeMapping(Graph, Graph, NodeMapping)": {
+      "name": "Graphs.edgeMapping",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#edgemapping"
+    },
+    "Graphs.transposedEdgeMapping(Graph)": {
+      "name": "Graphs.transposedEdgeMapping",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#transposededgemapping"
+    },
+    "Graphs.edgePartition(Graph, NodePartition)": {
+      "name": "Graphs.edgePartition",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#edgepartition"
+    },
+    "Graphs.rootNodes(BiAdjacentGraph)": {
+      "name": "Graphs.rootNodes",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#rootnodes"
+    },
+    "Graphs.reachableFrom(Graph, int)": {
+      "name": "Graphs.reachableFrom",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#reachablefrom"
+    },
+    "Graphs.reachableFrom(Graph, IntList)": {
+      "name": "Graphs.reachableFrom",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#reachablefrom"
+    },
+    "Graphs.isDag(Graph)": {
+      "name": "Graphs.isDag",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#isdag"
+    },
+    "Graphs.findCycle(Graph)": {
+      "name": "Graphs.findCycle",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#findcycle",
+      "note": "Returns an Int32Array, not to be modified, where Java returns an IntList: length and [i] in place of size() and getInt(i)."
+    },
+    "Graphs.isForest(Graph)": {
+      "name": "Graphs.isForest",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#isforest"
+    },
+    "Graphs.isTree(Graph)": {
+      "name": "Graphs.isTree",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#istree"
+    },
+    "Graphs.isPath(Graph)": {
+      "name": "Graphs.isPath",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#ispath"
+    },
+    "Graphs.isStronglyConnected(Graph)": {
+      "name": "Graphs.isStronglyConnected",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#isstronglyconnected"
+    },
+    "Graphs.isBipartite(Graph)": {
+      "name": "Graphs.isBipartite",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#isbipartite"
+    },
+    "Graphs.isUndirectedTree(Graph)": {
+      "name": "Graphs.isUndirectedTree",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#isundirectedtree"
+    },
+    "Graphs.isUndirectedForest(Graph)": {
+      "name": "Graphs.isUndirectedForest",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#isundirectedforest"
+    },
+    "Graphs.isWeaklyConnected(Graph)": {
+      "name": "Graphs.isWeaklyConnected",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#isweaklyconnected"
+    },
+    "Graphs.adjacencyListOf(Graph)": {
+      "name": "Graphs.adjacencyListOf",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#adjacencylistof"
+    },
+    "Graphs.topologyHash(Graph)": {
+      "name": "Graphs.topologyHash",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#topologyhash",
+      "note": "Returns a bigint, the signed 64-bit value of Java's long."
+    },
+    "Graphs.diff(Graph, Graph)": {
+      "name": "Graphs.diff",
+      "url": "variables/_kobayami_graphity-core.Graphs.html#diff"
+    },
+    "IndexMapping": {
+      "name": "IndexMapping",
+      "url": "classes/_kobayami_graphity-core.IndexMapping.html"
+    },
+    "IndexMapping.get(int)": {
+      "name": "IndexMapping.get",
+      "url": "classes/_kobayami_graphity-core.IndexMapping.html#get"
+    },
+    "IndexMapping.isMapped(int)": {
+      "name": "IndexMapping.isMapped",
+      "url": "classes/_kobayami_graphity-core.IndexMapping.html#ismapped"
+    },
+    "IndexMapping.isPartial()": {
+      "name": "IndexMapping.isPartial",
+      "url": "classes/_kobayami_graphity-core.IndexMapping.html#ispartial",
+      "note": "A property, read without parentheses: mapping.isPartial."
+    },
+    "IndexMapping.mappedCount()": {
+      "name": "IndexMapping.mappedCount",
+      "url": "classes/_kobayami_graphity-core.IndexMapping.html#mappedcount",
+      "note": "A property, read without parentheses: mapping.mappedCount."
+    },
+    "IndexMapping.indexCount()": {
+      "name": "IndexMapping.indexCount",
+      "url": "classes/_kobayami_graphity-core.IndexMapping.html#indexcount",
+      "note": "A property, read without parentheses: mapping.indexCount."
+    },
+    "IndexPartition": {
+      "name": "IndexPartition",
+      "url": "classes/_kobayami_graphity-core.IndexPartition.html"
+    },
+    "IndexPartition.groupCount()": {
+      "name": "IndexPartition.groupCount",
+      "url": "classes/_kobayami_graphity-core.IndexPartition.html#groupcount",
+      "note": "A property, read without parentheses: partition.groupCount."
+    },
+    "IndexPartition.indicesOf(int)": {
+      "name": "IndexPartition.indicesOf",
+      "url": "classes/_kobayami_graphity-core.IndexPartition.html#indicesof"
+    },
+    "IndexPartition.sizeOf(int)": {
+      "name": "IndexPartition.sizeOf",
+      "url": "classes/_kobayami_graphity-core.IndexPartition.html#sizeof"
+    },
+    "IndexPartition.reduce(int[], int, IntBinaryOperator)": {
+      "name": "IndexPartition.reduce",
+      "signature": "IndexPartition.reduce<A>(values: A, identity: number, combine: (accumulated: number, value: number) => number)",
+      "url": "classes/_kobayami_graphity-core.IndexPartition.html#reduce",
+      "note": "One method for every typed array: an Int32Array here, with a number as identity and a function (accumulated, value) => number in place of the IntBinaryOperator. Each step is stored in the type of the array, so it wraps at 32 bits as Java's int does."
+    },
+    "IndexPartition.reduce(long[], long, LongBinaryOperator)": {
+      "name": "IndexPartition.reduce",
+      "signature": "IndexPartition.reduce(values: BigInt64Array, identity: bigint, combine: (accumulated: bigint, value: bigint) => bigint)",
+      "url": "classes/_kobayami_graphity-core.IndexPartition.html#reduce",
+      "note": "One method for every typed array: a BigInt64Array here, with a bigint as identity and a function on bigints in place of the LongBinaryOperator. Each step wraps at 64 bits as Java's long does."
+    },
+    "IndexPartition.reduce(double[], double, DoubleBinaryOperator)": {
+      "name": "IndexPartition.reduce",
+      "signature": "IndexPartition.reduce<A>(values: A, identity: number, combine: (accumulated: number, value: number) => number)",
+      "url": "classes/_kobayami_graphity-core.IndexPartition.html#reduce",
+      "note": "One method for every typed array: a Float64Array here, with a number as identity and a function (accumulated, value) => number in place of the DoubleBinaryOperator."
+    },
+    "IndexPartition.reduce(T[], T[], BinaryOperator)": {
+      "name": "IndexPartition.reduce",
+      "signature": "IndexPartition.reduce<T>(values: ArrayLike<T>, groupValues: T[], combine: (accumulated: T, value: T) => T)",
+      "url": "classes/_kobayami_graphity-core.IndexPartition.html#reduce"
+    },
+    "NodeMapping": {
+      "name": "NodeMapping",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html"
+    },
+    "NodeMapping.of(int[])": {
+      "name": "NodeMapping.of",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#of"
+    },
+    "NodeMapping.forSubgraph(BitSet)": {
+      "name": "NodeMapping.forSubgraph",
+      "signature": "NodeMapping.forSubgraph(selected: BitSet)",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#forsubgraph",
+      "note": "Takes the BitSet of @kobayami/graphity-core, the part of java.util.BitSet that the API needs: JavaScript has no bit set."
+    },
+    "NodeMapping.forSubgraph(IntList)": {
+      "name": "NodeMapping.forSubgraph",
+      "signature": "NodeMapping.forSubgraph(selected: IntList)",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#forsubgraph"
+    },
+    "NodeMapping.forSubgraph(int...)": {
+      "name": "NodeMapping.forSubgraph",
+      "signature": "NodeMapping.forSubgraph(...selected: number[])",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#forsubgraph"
+    },
+    "NodeMapping.forPermutation(IntList)": {
+      "name": "NodeMapping.forPermutation",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#forpermutation"
+    },
+    "NodeMapping.inverted(int)": {
+      "name": "NodeMapping.inverted",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#inverted"
+    },
+    "NodeMapping.compose(NodeMapping)": {
+      "name": "NodeMapping.compose",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#compose"
+    },
+    "NodeMapping.gather(int[])": {
+      "name": "NodeMapping.gather",
+      "signature": "NodeMapping.gather<A>(values: A)",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#gather",
+      "note": "One method for every typed array, which returns an array of the same type: an Int32Array here."
+    },
+    "NodeMapping.gather(long[])": {
+      "name": "NodeMapping.gather",
+      "signature": "NodeMapping.gather<A>(values: A)",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#gather",
+      "note": "One method for every typed array, which returns an array of the same type: a BigInt64Array here."
+    },
+    "NodeMapping.gather(double[])": {
+      "name": "NodeMapping.gather",
+      "signature": "NodeMapping.gather<A>(values: A)",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#gather",
+      "note": "One method for every typed array, which returns an array of the same type: a Float64Array here."
+    },
+    "NodeMapping.gather(T[], T[])": {
+      "name": "NodeMapping.gather",
+      "signature": "NodeMapping.gather<T>(values: ArrayLike<T>, newValues: T[])",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#gather"
+    },
+    "NodeMapping.reindex(Graph)": {
+      "name": "NodeMapping.reindex",
+      "url": "classes/_kobayami_graphity-core.NodeMapping.html#reindex"
+    },
+    "NodePartition": {
+      "name": "NodePartition",
+      "url": "classes/_kobayami_graphity-core.NodePartition.html"
+    },
+    "NodePartition.of(Graph, int[], int)": {
+      "name": "NodePartition.of",
+      "url": "classes/_kobayami_graphity-core.NodePartition.html#of"
+    },
+    "NodePartition.nodeCount()": {
+      "name": "NodePartition.nodeCount",
+      "url": "classes/_kobayami_graphity-core.NodePartition.html#nodecount",
+      "note": "A property, read without parentheses: partition.nodeCount."
+    },
+    "NodePartition.nodesOf(int)": {
+      "name": "NodePartition.nodesOf",
+      "url": "classes/_kobayami_graphity-core.NodePartition.html#nodesof"
+    },
+    "NodePartition.condense()": {
+      "name": "NodePartition.condense",
+      "url": "classes/_kobayami_graphity-core.NodePartition.html#condense"
+    },
+    "PreorderAncestry": {
+      "name": "PreorderAncestry",
+      "url": "classes/_kobayami_graphity-core.PreorderAncestry.html"
+    },
+    "PreorderAncestry.of(Ancestry)": {
+      "name": "PreorderAncestry.of",
+      "url": "classes/_kobayami_graphity-core.PreorderAncestry.html#of"
+    },
+    "PreorderAncestry.isAncestorOf(int, int)": {
+      "name": "PreorderAncestry.isAncestorOf",
+      "url": "classes/_kobayami_graphity-core.PreorderAncestry.html#isancestorof"
+    },
+    "PreorderAncestry.subtreeSizeOf(int)": {
+      "name": "PreorderAncestry.subtreeSizeOf",
+      "url": "classes/_kobayami_graphity-core.PreorderAncestry.html#subtreesizeof"
+    },
+    "PreorderAncestry.subtreeOf(int)": {
+      "name": "PreorderAncestry.subtreeOf",
+      "url": "classes/_kobayami_graphity-core.PreorderAncestry.html#subtreeof",
+      "note": "Returns an Int32Array, not to be modified, where Java returns an IntList: length and [i] in place of size() and getInt(i)."
+    },
+    "PreorderAncestry.preorder()": {
+      "name": "PreorderAncestry.preorder",
+      "url": "classes/_kobayami_graphity-core.PreorderAncestry.html#preorder",
+      "note": "A property, read without parentheses (ancestry.preorder), that holds an Int32Array, not to be modified, where Java returns an IntList."
+    },
+    "PreorderAncestry.preorderIndexOf(int)": {
+      "name": "PreorderAncestry.preorderIndexOf",
+      "url": "classes/_kobayami_graphity-core.PreorderAncestry.html#preorderindexof"
+    },
+    "Sccs": {
+      "name": "Sccs",
+      "url": "classes/_kobayami_graphity-core.Sccs.html"
+    },
+    "Sccs.sccOf(int)": {
+      "name": "Sccs.sccOf",
+      "url": "classes/_kobayami_graphity-core.Sccs.html#sccof"
+    },
+    "Sccs.sccCount()": {
+      "name": "Sccs.sccCount",
+      "url": "classes/_kobayami_graphity-core.Sccs.html#scccount",
+      "note": "A property, read without parentheses: sccs.sccCount."
+    },
+    "Sccs.containsCycle(int)": {
+      "name": "Sccs.containsCycle",
+      "url": "classes/_kobayami_graphity-core.Sccs.html#containscycle"
+    },
+    "Sccs.isStronglyConnected()": {
+      "name": "Sccs.isStronglyConnected",
+      "url": "classes/_kobayami_graphity-core.Sccs.html#isstronglyconnected",
+      "note": "A property, read without parentheses: sccs.isStronglyConnected."
+    },
+    "SortedIntView": {
+      "name": "SortedIntView",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html"
+    },
+    "SortedIntView.getInt(int)": {
+      "name": "SortedIntView.get",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#get",
+      "note": "Named get, the name of indexed access in JavaScript; a SortedIntView cannot be indexed with []."
+    },
+    "SortedIntView.size()": {
+      "name": "SortedIntView.size",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#size",
+      "note": "A property, read without parentheses: view.size."
+    },
+    "SortedIntView.first()": {
+      "name": "SortedIntView.first",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#first"
+    },
+    "SortedIntView.last()": {
+      "name": "SortedIntView.last",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#last"
+    },
+    "SortedIntView.indexOf(int)": {
+      "name": "SortedIntView.indexOf",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#indexof"
+    },
+    "SortedIntView.lastIndexOf(int)": {
+      "name": "SortedIntView.lastIndexOf",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#lastindexof"
+    },
+    "SortedIntView.toIntArray()": {
+      "name": "SortedIntView.toInt32Array",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#toint32array",
+      "note": "Named toInt32Array, after the type of the copy it returns."
+    },
+    "SortedIntView.toArray(int[])": {
+      "name": "SortedIntView.toArray",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#toarray"
+    },
+    "SortedIntView.getElements(int, int[], int, int)": {
+      "name": "SortedIntView.getElements",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#getelements"
+    },
+    "SortedIntView.forEach(IntConsumer)": {
+      "name": "SortedIntView.forEach",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#foreach"
+    },
+    "SortedIntView.listIterator(int)": {
+      "name": null,
+      "url": null,
+      "reason": "JavaScript has no list iterator: its iterator protocol goes forward only. A SortedIntView is iterable from its start, with for...of, and get(index) reads any position."
+    },
+    "SortedIntView.spliterator()": {
+      "name": null,
+      "url": null,
+      "reason": "JavaScript has no spliterators and no streams to split for. A SortedIntView is iterable, and asInt32Array() gives its elements as an Int32Array without a copy."
+    },
+    "SortedIntView.subList(int, int)": {
+      "name": "SortedIntView.subList",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#sublist"
+    },
+    "SortedIntView.viewOf(int[], int, int)": {
+      "name": "SortedIntView.viewOf",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#viewof"
+    },
+    "SortedIntView.equals(Object)": {
+      "name": "SortedIntView.equals",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#equals",
+      "note": "Java's value equality as a method: === and the keys of a Map or a Set still compare identity."
+    },
+    "SortedIntView.hashCode()": {
+      "name": "SortedIntView.hashCode",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#hashcode",
+      "note": "Java's value, as a number; no JavaScript collection calls it."
+    },
+    "SortedIntView.union(SortedIntView)": {
+      "name": "SortedIntView.union",
+      "url": "classes/_kobayami_graphity-core.SortedIntView.html#union"
+    },
+    "StrongConnectivity": {
+      "name": "StrongConnectivity",
+      "url": "classes/_kobayami_graphity-core.StrongConnectivity.html"
+    },
+    "StrongConnectivity.strongBridges()": {
+      "name": "StrongConnectivity.strongBridges",
+      "url": "classes/_kobayami_graphity-core.StrongConnectivity.html#strongbridges",
+      "note": "A property, read without parentheses: connectivity.strongBridges."
+    },
+    "StrongConnectivity.strongArticulationPoints()": {
+      "name": "StrongConnectivity.strongArticulationPoints",
+      "url": "classes/_kobayami_graphity-core.StrongConnectivity.html#strongarticulationpoints",
+      "note": "A property, read without parentheses: connectivity.strongArticulationPoints."
+    },
+    "TopOrder": {
+      "name": "TopOrder",
+      "url": "variables/_kobayami_graphity-core.TopOrder.html",
+      "note": "A constant object, not a class: its functions take the place of Java's static methods."
+    },
+    "TopOrder.of(Graph)": {
+      "name": "TopOrder.of",
+      "url": "variables/_kobayami_graphity-core.TopOrder.html#of",
+      "note": "Returns an Int32Array, not to be modified, where Java returns an IntList: length and [i] in place of size() and getInt(i)."
+    },
+    "TopOrderAndLevels": {
+      "name": "TopOrderAndLevels",
+      "url": "classes/_kobayami_graphity-core.TopOrderAndLevels.html"
+    },
+    "TopOrderAndLevels.of(Graph)": {
+      "name": "TopOrderAndLevels.of",
+      "url": "classes/_kobayami_graphity-core.TopOrderAndLevels.html#of"
+    },
+    "TopOrderAndLevels.order()": {
+      "name": "TopOrderAndLevels.order",
+      "url": "classes/_kobayami_graphity-core.TopOrderAndLevels.html#order",
+      "note": "A property, read without parentheses (levels.order), that holds an Int32Array, not to be modified, where Java returns an IntList."
+    },
+    "TopOrderAndLevels.levels()": {
+      "name": "TopOrderAndLevels.levels",
+      "url": "classes/_kobayami_graphity-core.TopOrderAndLevels.html#levels",
+      "note": "A property, read without parentheses (levels.levels), that holds an Int32Array, not to be modified, where Java returns an IntList."
+    },
+    "TopOrderAndLevels.levelOf(int)": {
+      "name": "TopOrderAndLevels.levelOf",
+      "url": "classes/_kobayami_graphity-core.TopOrderAndLevels.html#levelof"
+    },
+    "TopOrderAndLevels.levelCount()": {
+      "name": "TopOrderAndLevels.levelCount",
+      "url": "classes/_kobayami_graphity-core.TopOrderAndLevels.html#levelcount",
+      "note": "A property, read without parentheses: levels.levelCount."
+    },
+    "ControlFlow": {
+      "name": "ControlFlow",
+      "url": "variables/_kobayami_graphity-controlflow.ControlFlow.html",
+      "note": "A constant object, not a class: its functions take the place of Java's static methods."
+    },
+    "ControlFlow.dominanceFrontiers(Dominators)": {
+      "name": "ControlFlow.dominanceFrontiers",
+      "url": "variables/_kobayami_graphity-controlflow.ControlFlow.html#dominancefrontiers"
+    },
+    "IteratedDominanceFrontier": {
+      "name": "IteratedDominanceFrontier",
+      "url": "classes/_kobayami_graphity-controlflow.IteratedDominanceFrontier.html"
+    },
+    "IteratedDominanceFrontier.of(Dominators)": {
+      "name": "IteratedDominanceFrontier.of",
+      "url": "classes/_kobayami_graphity-controlflow.IteratedDominanceFrontier.html#of"
+    },
+    "IteratedDominanceFrontier.frontierOf(IntList)": {
+      "name": "IteratedDominanceFrontier.frontierOf",
+      "url": "classes/_kobayami_graphity-controlflow.IteratedDominanceFrontier.html#frontierof"
+    },
+    "Loops": {
+      "name": "Loops",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html"
+    },
+    "Loops.of(BiAdjacentGraph, int)": {
+      "name": "Loops.of",
+      "signature": "Loops.of(graph: BiAdjacentGraph, entry: number)",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#of"
+    },
+    "Loops.of(BiAdjacentGraph, IntList)": {
+      "name": "Loops.of",
+      "signature": "Loops.of(graph: BiAdjacentGraph, entries: IntList)",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#of"
+    },
+    "Loops.loopCount()": {
+      "name": "Loops.loopCount",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#loopcount",
+      "note": "A property, read without parentheses: loops.loopCount."
+    },
+    "Loops.isReducible()": {
+      "name": "Loops.isReducible",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#isreducible",
+      "note": "A property, read without parentheses: loops.isReducible."
+    },
+    "Loops.innermostLoopOf(int)": {
+      "name": "Loops.innermostLoopOf",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#innermostloopof"
+    },
+    "Loops.loopDepthOf(int)": {
+      "name": "Loops.loopDepthOf",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#loopdepthof"
+    },
+    "Loops.isInLoop(int, int)": {
+      "name": "Loops.isInLoop",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#isinloop"
+    },
+    "Loops.headerOf(int)": {
+      "name": "Loops.headerOf",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#headerof"
+    },
+    "Loops.entriesOf(int)": {
+      "name": "Loops.entriesOf",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#entriesof"
+    },
+    "Loops.parentOf(int)": {
+      "name": "Loops.parentOf",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#parentof"
+    },
+    "Loops.bodyOf(int)": {
+      "name": "Loops.bodyOf",
+      "url": "classes/_kobayami_graphity-controlflow.Loops.html#bodyof",
+      "note": "Returns an Int32Array that views the array of all bodies, not to be modified, where Java returns an unmodifiable IntList: length and [i] in place of size() and getInt(i)."
+    },
+    "AttributeHook": {
+      "name": "AttributeHook",
+      "url": "types/_kobayami_graphity-dot.AttributeHook.html",
+      "note": "A function type, (id, attributes) => void, not an interface; attributes is a Map<string, string>."
+    },
+    "AttributeHook.accept(int, Map)": {
+      "name": "AttributeHook",
+      "url": "types/_kobayami_graphity-dot.AttributeHook.html",
+      "note": "The function type itself: a call of the function takes the place of accept, and the attributes are a JavaScript Map (set, delete) in place of a LinkedHashMap (put, remove), in insertion order as well."
+    },
+    "DotWriter": {
+      "name": "DotWriter",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html"
+    },
+    "DotWriter.of(Graph)": {
+      "name": "DotWriter.of",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#of"
+    },
+    "DotWriter.graphAttribute(String, String)": {
+      "name": "DotWriter.graphAttribute",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#graphattribute"
+    },
+    "DotWriter.nodeLabel(IntFunction)": {
+      "name": "DotWriter.nodeLabel",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#nodelabel"
+    },
+    "DotWriter.edgeLabel(IntFunction)": {
+      "name": "DotWriter.edgeLabel",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#edgelabel"
+    },
+    "DotWriter.nodeAttributes(AttributeHook)": {
+      "name": "DotWriter.nodeAttributes",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#nodeattributes"
+    },
+    "DotWriter.edgeAttributes(AttributeHook)": {
+      "name": "DotWriter.edgeAttributes",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#edgeattributes"
+    },
+    "DotWriter.clusters(NodePartition, IntFunction)": {
+      "name": "DotWriter.clusters",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#clusters"
+    },
+    "DotWriter.nodeFilter(IntPredicate)": {
+      "name": "DotWriter.nodeFilter",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#nodefilter"
+    },
+    "DotWriter.undirected()": {
+      "name": "DotWriter.undirected",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#undirected"
+    },
+    "DotWriter.write(Appendable)": {
+      "name": "DotWriter.write",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#write",
+      "note": "Writes to a TextSink, any object with a method write(text: string), such as process.stdout or a stream of Node.js, in place of an Appendable."
+    },
+    "DotWriter.writeToString()": {
+      "name": "DotWriter.writeToString",
+      "url": "classes/_kobayami_graphity-dot.DotWriter.html#writetostring"
+    },
+    "MermaidWriter": {
+      "name": "MermaidWriter",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html"
+    },
+    "MermaidWriter.of(Graph)": {
+      "name": "MermaidWriter.of",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#of"
+    },
+    "MermaidWriter.direction(Direction)": {
+      "name": "MermaidWriter.direction",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#direction"
+    },
+    "MermaidWriter.nodeLabel(IntFunction)": {
+      "name": "MermaidWriter.nodeLabel",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#nodelabel"
+    },
+    "MermaidWriter.edgeLabel(IntFunction)": {
+      "name": "MermaidWriter.edgeLabel",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#edgelabel"
+    },
+    "MermaidWriter.nodeShape(IntFunction)": {
+      "name": "MermaidWriter.nodeShape",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#nodeshape"
+    },
+    "MermaidWriter.classDef(String, String)": {
+      "name": "MermaidWriter.classDef",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#classdef"
+    },
+    "MermaidWriter.nodeClass(IntFunction)": {
+      "name": "MermaidWriter.nodeClass",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#nodeclass"
+    },
+    "MermaidWriter.edgeStyle(IntFunction)": {
+      "name": "MermaidWriter.edgeStyle",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#edgestyle"
+    },
+    "MermaidWriter.clusters(NodePartition, IntFunction)": {
+      "name": "MermaidWriter.clusters",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#clusters"
+    },
+    "MermaidWriter.nodeFilter(IntPredicate)": {
+      "name": "MermaidWriter.nodeFilter",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#nodefilter"
+    },
+    "MermaidWriter.undirected()": {
+      "name": "MermaidWriter.undirected",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#undirected"
+    },
+    "MermaidWriter.write(Appendable)": {
+      "name": "MermaidWriter.write",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#write",
+      "note": "Writes to a TextSink, any object with a method write(text: string), such as process.stdout or a stream of Node.js, in place of an Appendable."
+    },
+    "MermaidWriter.writeToString()": {
+      "name": "MermaidWriter.writeToString",
+      "url": "classes/_kobayami_graphity-mermaid.MermaidWriter.html#writetostring"
+    },
+    "MermaidWriter.Direction": {
+      "name": "Direction",
+      "url": "variables/_kobayami_graphity-mermaid.Direction.html",
+      "note": "Exported at the top level of @kobayami/graphity-mermaid, not nested in MermaidWriter. A constant object of numbers, Java's ordinals (Direction.TOP_DOWN is 0), with a type of the same name for one of them, not an enum."
+    },
+    "MermaidWriter.Shape": {
+      "name": "Shape",
+      "url": "variables/_kobayami_graphity-mermaid.Shape.html",
+      "note": "Exported at the top level of @kobayami/graphity-mermaid, not nested in MermaidWriter. A constant object of numbers, Java's ordinals (Shape.RECTANGLE is 0), with a type of the same name for one of them, not an enum."
+    }
+  }
+}

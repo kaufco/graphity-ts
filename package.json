@@ -1,0 +1,42 @@
+{
+  "name": "graphity-ts",
+  "private": true,
+  "description": "Graphity for TypeScript and JavaScript: graph analysis on a compact, immutable CSR graph, as the packages @kobayami/graphity-core, -controlflow, -dot and -mermaid, and @kobayami/graphity for all of them",
+  "homepage": "https://github.com/kaufco/graphity-ts#readme",
+  "bugs": {
+    "url": "https://github.com/kaufco/graphity-ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaufco/graphity-ts.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Marco Kaufmann (https://github.com/kaufco)",
+  "type": "module",
+  "workspaces": [
+    "packages/core",
+    "packages/controlflow",
+    "packages/dot",
+    "packages/mermaid",
+    "packages/graphity"
+  ],
+  "scripts": {
+    "build": "tsc -b packages/core packages/controlflow packages/dot packages/mermaid packages/graphity",
+    "test": "vitest run",
+    "typecheck": "tsc -b packages/core packages/controlflow packages/dot packages/mermaid packages/graphity && tsc -p packages/core/tsconfig.test.json && tsc -p packages/controlflow/tsconfig.test.json && tsc -p packages/dot/tsconfig.test.json && tsc -p packages/mermaid/tsconfig.test.json && tsc -p packages/graphity/tsconfig.test.json && tsc -p packages/examples && tsc -p packages/consumer-check",
+    "docs": "npm run build --prefix api-docs",
+    "clean": "tsc -b --clean packages/core packages/controlflow packages/dot packages/mermaid packages/graphity",
+    "format:check": "prettier --check \"packages/*/src/**/*.ts\" \"packages/*/test/**/*.ts\"",
+    "format": "prettier --write \"packages/*/src/**/*.ts\" \"packages/*/test/**/*.ts\""
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "graphity-ts-api-docs": "file:api-docs",
+    "prettier": "3.9.10",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}

@@ -1,0 +1,287 @@
+# Publishes the five packages to npm, with provenance. Which packages those are is the root
+# package.json's workspaces list, all at the version of their package.json; today these are
+# @kobayami/graphity-core, @kobayami/graphity-controlflow, @kobayami/graphity-dot,
+# @kobayami/graphity-mermaid and @kobayami/graphity (which brings in the four).
+#
+# One trigger, workflow_dispatch, run before the GitHub Release is published, so
+# that a failed upload stops the release instead of following it. The GitHub
+# Release comes afterwards and starts only deploy-api-docs.yml. A second trigger
+# on release.published would publish the same version again, which npm rejects.
+#
+# Two inputs, because the ref that is built and the ref the workflow file comes
+# from are different things. The run always uses the workflow file of the branch
+# it is started from (normally main, so fixes to this file apply). What it
+# builds is `ref`: a tag, a branch, or a full 40-character commit SHA (a short
+# SHA is looked up as a branch or tag and fails). Left empty, it builds the tag
+# named `version`. The regular release pushes that tag to the release commit
+# first and leaves `ref` empty; the GitHub Release then picks up the existing
+# tag, so the built commit and the released one are the same by construction.
+#
+# What the job does — and where it stops: it checks the versions, builds, type
+# checks, tests, builds the API documentation, and packs every package with
+# `npm publish --dry-run`, which lists what would be uploaded without uploading
+# it. That is all, unless the third input, `publish`, is true. npm has no
+# staging area like the Central Publisher Portal: what it accepts is public at
+# once, an unpublish is allowed only within 72 hours and only while no other
+# package depends on it, and a version, once published, can never be published
+# again. So `publish` is off by default: the regular release runs the workflow
+# once without it, reads the dry run, and runs it again with it.
+#
+# Publishing uploads the packages one by one, in the order of the workspaces
+# list, so that each comes after the packages it depends on. npm has no bundle:
+# a package that fails stops the run, and those before it stay published. The
+# dry run of all five, after the build and the tests, is what keeps that from
+# happening for any reason that can be known before the upload. A run that
+# stopped part-way is finished by running it again with the same inputs; it
+# skips the packages already on npm.
+#
+# The version comes from the `version` input and is checked against the
+# package.json of every package of the ref that is built, together with the
+# dependencies of the packages on each other. That check notices a ref whose
+# packages carry another version — most likely because the sync has not run yet.
+# It cannot tell two commits with the same version apart; that is what building
+# the tag is for.
+#
+# Provenance: `npm publish --provenance` publishes, with each package, a signed
+# statement that it was built by this workflow from this repository and commit.
+# It needs the permission `id-token: write`, and the `repository` field of each
+# package.json must name this repository.
+#
+# Required repository secrets:
+#   NPM_TOKEN  npm access token with permission to publish the packages of the
+#              scope @kobayami: a granular token with read and write access to
+#              them (and allowed to bypass two-factor authentication, if the
+#              account requires it for publishing). Only the publish step reads it.
+#
+# The job is guarded with `if: github.repository == 'kaufco/graphity-ts'` so that
+# forks never attempt a publish they have no credentials for.
+
+name: Release to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish; must match the package.json files of the ref that is built (e.g. 3.0.0)'
+        required: true
+        type: string
+      ref:
+        description: 'Tag, branch or full commit SHA to build; empty builds the tag named like the version'
+        required: false
+        type: string
+        default: ''
+      publish:
+        description: 'Publish to npm, which cannot be undone; off, the run stops after npm publish --dry-run'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  # For the provenance statement of npm publish --provenance.
+  id-token: write
+
+# Never run two releases at once, and never cancel one in flight: an interrupted
+# run would leave some of the packages published and the others not. A run that
+# stopped part-way is finished by running it again with the same inputs; it
+# skips the packages already on npm.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Build, test & publish to npm
+    if: github.repository == 'kaufco/graphity-ts'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Determine the version and the ref to build
+        id: target
+        # Both inputs are passed through the environment rather than
+        # interpolated into the script, so neither can be read as shell syntax.
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          INPUT_REF: ${{ inputs.ref }}
+        run: |
+          set -euo pipefail
+          # Tags are unprefixed by convention; a v-prefixed version still works.
+          version="${INPUT_VERSION#v}"
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            echo "'$INPUT_VERSION' does not look like a release version." >&2
+            exit 1
+          fi
+          # Blank input counts as empty: actions/checkout trims it and would fall
+          # back to the dispatch branch, which is the mistake this input prevents.
+          ref="${INPUT_REF//[[:space:]]/}"
+          ref="${ref:-$version}"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+          echo "Publishing $version, built from '$ref'."
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # The ref to build, not the branch the workflow file came from: the
+          # packages must be built from the release commit.
+          ref: ${{ steps.target.outputs.ref }}
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          # Writes an .npmrc that takes the token for this registry from the
+          # environment variable NODE_AUTH_TOKEN, which only the publish step sets.
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Read the packages to publish
+        id: packages
+        run: |
+          set -euo pipefail
+          list="$(node -p 'require("./package.json").workspaces.join(" ")')"
+          if [[ ! "$list" =~ ^packages/[a-z0-9-]+(\ packages/[a-z0-9-]+)*$ ]]; then
+            echo "The workspaces of package.json are '$list', not a list of package directories." >&2
+            exit 1
+          fi
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+          echo "Publishing packages: $list"
+
+      - name: Check the version of every package
+        # Each package carries its own version, and the packages name each other's versions in
+        # their dependencies: @kobayami/graphity pins the other four exactly, and the others depend
+        # on the core with a caret range. A bump that missed one of them would publish a package
+        # under the wrong version, or one that installs an older version of another; this catches
+        # it before the build.
+        env:
+          EXPECTED: ${{ steps.target.outputs.version }}
+          PACKAGES: ${{ steps.packages.outputs.list }}
+        run: |
+          set -euo pipefail
+          node - <<'EOF'
+          const { readFileSync } = require("node:fs");
+          const expected = process.env.EXPECTED;
+          const manifests = process.env.PACKAGES.split(" ").map((dir) =>
+            JSON.parse(readFileSync(`${dir}/package.json`, "utf8")),
+          );
+          const names = new Set(manifests.map((manifest) => manifest.name));
+          let mismatch = false;
+          for (const { name, version, dependencies = {} } of manifests) {
+            if (version !== expected) {
+              console.error(`${name} is at ${version}, but this run was started for ${expected}.`);
+              mismatch = true;
+            }
+            for (const [dependency, range] of Object.entries(dependencies)) {
+              if (names.has(dependency) && range !== expected && range !== `^${expected}`) {
+                console.error(`${name} depends on ${dependency} ${range}, not on ${expected}.`);
+                mismatch = true;
+              }
+            }
+          }
+          if (mismatch) {
+            console.error("Either the ref is not the release commit, or that commit has not been synced yet.");
+            process.exit(1);
+          }
+          console.log(`Publishing ${expected}.`);
+          EOF
+
+      - name: Refuse a version that is already on npm
+        # npm refuses a second upload of a published version anyway, after the
+        # build. Failing here says why, and says it before the build. Every
+        # listed package is asked; one that was never published answers 404.
+        # A version that only some of the packages have is what an interrupted
+        # run leaves behind: a run with publish uploads the rest. The packages
+        # still missing are the list that the dry run and the upload take: npm's
+        # dry run, too, rejects a published version. One that npm could not be
+        # asked about stays in the list; npm rejects it if it is there already.
+        id: npm
+        env:
+          VERSION: ${{ steps.target.outputs.version }}
+          PACKAGES: ${{ steps.packages.outputs.list }}
+        run: |
+          set -euo pipefail
+          published=()
+          pending=()
+          for dir in $PACKAGES; do
+            name="$(node -p "require('./$dir/package.json').name")"
+            url="https://registry.npmjs.org/${name/\//%2f}/$VERSION"
+            code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$url" || echo 000)"
+            case "$code" in
+              200)
+                published+=("$name")
+                echo "$name $VERSION is on npm already."
+                ;;
+              404)
+                pending+=("$dir")
+                echo "$name $VERSION is not on npm yet."
+                ;;
+              *)
+                pending+=("$dir")
+                echo "Could not ask npm about $name (HTTP $code); trying it anyway."
+                ;;
+            esac
+          done
+          if [[ ${#pending[@]} -eq 0 ]]; then
+            echo "Version $VERSION of every package is on npm. A published version cannot be replaced; release a new version instead." >&2
+            exit 1
+          fi
+          if [[ ${#published[@]} -gt 0 ]]; then
+            echo "::warning::${published[*]} $VERSION are on npm already, the other packages not: a run with publish uploads the rest."
+          fi
+          echo "list=${pending[*]}" >> "$GITHUB_OUTPUT"
+          echo "Packages to publish: ${pending[*]}"
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        # Compiles every package to dist/, with its declarations: what npm publish packs.
+        run: npm run build
+
+      - name: Type check
+        # The sources, the tests against the sources, and a consumer of the published declarations
+        # without skipLibCheck (packages/consumer-check).
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: API documentation
+        # TypeDoc over the five packages, as deploy-api-docs.yml publishes it. Every warning is an
+        # error (api-docs/typedoc.config.mjs), so a broken documentation build stops the release
+        # before the upload. After the tests, so that they run without the documentation and skip
+        # the test of the guide's API mapping, which serves the guide, not the packages.
+        run: npm run docs
+
+      - name: Dry run
+        # Packs every package that is not on npm yet as npm publish does - prepack copies LICENSE
+        # and NOTICE into it - and lists its files, without uploading anything.
+        env:
+          PACKAGES: ${{ steps.npm.outputs.list }}
+        run: |
+          set -euo pipefail
+          for dir in $PACKAGES; do
+            npm publish --dry-run --access public --workspace "$dir"
+          done
+
+      - name: Publish to npm
+        # Only with the input `publish`. One package at a time, in the order of the workspaces
+        # list, and only those that are not on npm yet; --access public, because a scoped package
+        # is private by default.
+        if: inputs.publish
+        env:
+          PACKAGES: ${{ steps.npm.outputs.list }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          for dir in $PACKAGES; do
+            npm publish --provenance --access public --workspace "$dir"
+          done
+
+      - name: Say that nothing was published
+        if: ${{ !inputs.publish }}
+        env:
+          VERSION: ${{ steps.target.outputs.version }}
+        run: |
+          echo "::notice::Dry run: nothing was published. To publish $VERSION, run this workflow again with 'publish' set."

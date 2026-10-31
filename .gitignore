@@ -1,0 +1,27 @@
+# npm
+node_modules/
+
+# Build output of the packages
+dist/
+*.tsbuildinfo
+
+# Copies of LICENSE and NOTICE that each package takes before it is packed (prepack), and the
+# tarballs of npm pack
+packages/*/LICENSE
+packages/*/NOTICE
+*.tgz
+
+# Test runs
+.vitest/
+coverage/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db

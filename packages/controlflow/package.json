@@ -1,0 +1,50 @@
+{
+  "name": "@kobayami/graphity-controlflow",
+  "version": "3.0.0",
+  "description": "Control-flow analyses on Graphity graphs: the loop nesting forest with irreducible loops (Havlak), dominance frontiers and control dependence, and iterated dominance frontiers for SSA phi placement",
+  "keywords": [
+    "graph",
+    "control-flow",
+    "loops",
+    "dominance-frontier",
+    "ssa",
+    "phi",
+    "compiler",
+    "static-analysis"
+  ],
+  "homepage": "https://github.com/kaufco/graphity-ts#readme",
+  "bugs": {
+    "url": "https://github.com/kaufco/graphity-ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaufco/graphity-ts.git",
+    "directory": "packages/controlflow"
+  },
+  "license": "Apache-2.0",
+  "author": "Marco Kaufmann (https://github.com/kaufco)",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "NOTICE"
+  ],
+  "scripts": {
+    "prepack": "node -e \"for (const f of ['LICENSE', 'NOTICE']) require('fs').copyFileSync('../../' + f, f)\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@kobayami/graphity-core": "^3.0.0"
+  }
+}

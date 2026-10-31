@@ -1,0 +1,95 @@
+# Continuous integration on every push to main and on every pull request: one build on the
+# current LTS release of Node.js, with the type check of the sources, the tests and the published
+# declarations as the lint, the format check and the API documentation; then the tests on every
+# Node.js release line users may run the library on (22, 24, 26).
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Cancel superseded runs for the same ref (e.g. force-pushes to a PR branch) to
+# save Action minutes and keep the queue snappy.
+concurrency:
+  group: ts-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and type check (Node 24)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        # Compiles every package to dist/, with its declarations.
+        run: npm run build
+
+      - name: Type check
+        # The sources, the tests against the sources, and a consumer of the published declarations
+        # without skipLibCheck (packages/consumer-check).
+        run: npm run typecheck
+
+      - name: Format check
+        # Prettier at a width of 120 (.prettierrc), on the sources and tests of the packages; the
+        # examples keep the layout of Java's (.prettierignore).
+        run: npm run format:check
+
+      - name: API documentation
+        # TypeDoc over the five packages, as GitHub Pages publishes it (deploy-api-docs.yml). It
+        # reads each package from its sources and the packages it imports from their declarations
+        # in dist, so it runs after the build. Every warning is an error
+        # (api-docs/typedoc.config.mjs): an export without documentation or a broken link fails
+        # the run.
+        run: npm run docs
+
+      - name: API mapping
+        # packages/examples/api-ts.json links each name of the Java API that the guide shows to its
+        # page of the API documentation. Its test checks every link against the documentation built
+        # in the step before, which the tests of the other job skip, as they run without it.
+        run: npx vitest run packages/examples/test/apiMapping.test.ts
+        env:
+          GRAPHITY_API_DOCS_REQUIRED: 'true'
+
+  test:
+    name: Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24', '26']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Test
+        # Vitest runs the tests against the sources; no build needed.
+        run: npm test

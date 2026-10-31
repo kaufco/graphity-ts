@@ -1,0 +1,4 @@
+# The examples are laid out as Java's, with aligned tables of edges and comments, and the README and
+# the documentation comments show them as they are: the example tests compare each code block with
+# its region.
+packages/examples/

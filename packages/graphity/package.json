@@ -1,0 +1,56 @@
+{
+  "name": "@kobayami/graphity",
+  "version": "3.0.0",
+  "description": "All of Graphity in one dependency: graphity-core, graphity-controlflow, graphity-dot and graphity-mermaid, at the version of this package",
+  "keywords": [
+    "graph",
+    "graph-algorithms",
+    "csr",
+    "dominators",
+    "strongly-connected-components",
+    "topological-sort",
+    "static-analysis",
+    "compiler",
+    "control-flow",
+    "graphviz",
+    "mermaid"
+  ],
+  "homepage": "https://github.com/kaufco/graphity-ts#readme",
+  "bugs": {
+    "url": "https://github.com/kaufco/graphity-ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaufco/graphity-ts.git",
+    "directory": "packages/graphity"
+  },
+  "license": "Apache-2.0",
+  "author": "Marco Kaufmann (https://github.com/kaufco)",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "NOTICE"
+  ],
+  "scripts": {
+    "prepack": "node -e \"for (const f of ['LICENSE', 'NOTICE']) require('fs').copyFileSync('../../' + f, f)\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@kobayami/graphity-controlflow": "3.0.0",
+    "@kobayami/graphity-core": "3.0.0",
+    "@kobayami/graphity-dot": "3.0.0",
+    "@kobayami/graphity-mermaid": "3.0.0"
+  }
+}
